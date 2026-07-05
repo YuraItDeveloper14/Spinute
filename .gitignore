@@ -1,0 +1,12 @@
+# Local tooling & preview config
+.claude/
+.impeccable/
+.vercel/
+
+# Dependencies (none needed — this is a zero-build static site)
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log

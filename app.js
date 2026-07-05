@@ -9,6 +9,19 @@ const REEL_REPS = 10;
 
 const $ = (id) => document.getElementById(id);
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const hoverFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// GSAP powers the premium motion; every use is guarded so the app is fully
+// functional (just calmer) if the library fails to load or motion is reduced.
+function gsapReady() { return !reducedMotion && typeof window.gsap !== "undefined"; }
+
+function initMotion() {
+  if (!gsapReady()) return;
+  gsap.to(".amb-1", { xPercent: 14, yPercent: 10, scale: 1.08, duration: 22, ease: "sine.inOut", repeat: -1, yoyo: true });
+  gsap.to(".amb-2", { xPercent: -12, yPercent: -8, scale: 0.94, duration: 27, ease: "sine.inOut", repeat: -1, yoyo: true });
+  gsap.from("#screen-home .hero, #screen-home .setup-card, #screen-home .home-cta, #screen-home .week-goal, #screen-home .home-stats",
+    { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.06, ease: "power3.out" });
+}
 
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -174,6 +187,14 @@ function renderHome() {
     b.setAttribute("aria-pressed", String(l.key === state.lang.key));
     b.innerHTML = `<span class="chip-code">${l.short}</span>${l.name}`;
     b.onclick = () => { state.lang = l; renderHome(); };
+    if (gsapReady() && hoverFine) {
+      const code = b.querySelector(".chip-code");
+      b.addEventListener("pointerenter", () => {
+        gsap.to(b, { y: -4, duration: 0.28, ease: "back.out(2.2)" });
+        gsap.fromTo(code, { rotate: -6 }, { rotate: 6, yoyo: true, repeat: 1, duration: 0.16, ease: "power2.inOut", transformOrigin: "center" });
+      });
+      b.addEventListener("pointerleave", () => gsap.to(b, { y: 0, duration: 0.3, ease: "power2.out" }));
+    }
     row.appendChild(b);
   });
 
@@ -925,6 +946,18 @@ function renderHistory() {
       <span class="s-score">${typeof s.score === "number" ? s.score : "—"}</span>`;
     list.appendChild(row);
   });
+
+  // Orchestrated reveal: badges pop in, the chart line draws itself, rows slide in
+  if (gsapReady()) {
+    gsap.from("#badgesGrid .badge-cell", { autoAlpha: 0, scale: 0.85, y: 10, duration: 0.42, stagger: 0.04, ease: "back.out(1.5)" });
+    gsap.from("#sessionList .session-row", { autoAlpha: 0, x: -16, duration: 0.42, stagger: 0.05, ease: "power3.out" });
+    const linePath = chart.querySelector("path[stroke]");
+    if (linePath) {
+      const len = linePath.getTotalLength();
+      gsap.fromTo(linePath, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" });
+      gsap.from(chart.querySelectorAll("circle"), { scale: 0, transformOrigin: "center", duration: 0.32, stagger: 0.05, delay: 0.35, ease: "back.out(2)" });
+    }
+  }
 }
 
 function exportProgress() {
@@ -965,6 +998,7 @@ $("btnExport").onclick = exportProgress;
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 renderHome();
+initMotion();
 // quick hash navigation: /#play opens the reel, /#history opens progress
 if (location.hash === "#play" || location.hash === "#deck") { buildReel(); show("reel"); }
 else if (location.hash === "#history") { renderHistory(); show("history"); }

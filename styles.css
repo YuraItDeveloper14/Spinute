@@ -62,6 +62,13 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.01em; }
     radial-gradient(80rem 55rem at 108% 112%, oklch(0.95 0.026 200), transparent 58%),
     var(--bg);
 }
+.amb {
+  position: fixed; z-index: -2; border-radius: 50%;
+  filter: blur(90px); opacity: 0.45; pointer-events: none; will-change: transform;
+}
+.amb-1 { width: 52vmax; height: 52vmax; left: -16vmax; top: -18vmax; background: oklch(0.9 0.055 155); }
+.amb-2 { width: 44vmax; height: 44vmax; right: -14vmax; bottom: -16vmax; background: oklch(0.9 0.045 205); }
+
 .grain {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.045;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
@@ -102,7 +109,8 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.01em; }
 .flame svg { display: block; overflow: visible; transform-origin: 50% 90%; }
 .flame-body { fill: var(--primary); }
 .eye { fill: #fff; }
-.mouth { fill: none; stroke: #fff; stroke-width: 1.1; stroke-linecap: round; }
+.pupil { fill: var(--ink); }
+.mouth { fill: none; stroke: #fff; stroke-width: 1.2; stroke-linecap: round; }
 .tear { fill: var(--tear); opacity: 0; }
 
 /* Idle life: a slow gentle sway of the whole flame */
@@ -197,7 +205,7 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.01em; }
   border-radius: var(--r-chip); padding: 10px 16px 10px 12px; cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
-.chip:hover { background: #fff; transform: translateY(-1px); }
+.chip:hover { background: #fff; }
 .chip:active { transform: scale(0.97); }
 .chip:focus-visible { outline: 3px solid oklch(0.45 0.1 152 / 0.4); outline-offset: 2px; }
 .chip[aria-pressed="true"] {
@@ -507,6 +515,7 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.01em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .amb { display: none; }
   .screen.active, .badge-toast { animation: none; }
   .bar-fill, .week-fill { transition: none; }
   .rec-dot { animation: none; }

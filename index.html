@@ -37,6 +37,10 @@
           </span>
           <b id="streakNum">0</b><span class="streak-word" id="streakWord">days</span>
         </span>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="ic-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
         <button class="btn btn-ghost btn-s" id="navHistory">History</button>
       </div>
     </nav>
@@ -168,7 +172,7 @@
       <div class="glass score-card">
         <div class="dial-wrap">
           <svg viewBox="0 0 190 110" width="190" height="110">
-            <path d="M 15 105 A 80 80 0 0 1 175 105" fill="none" stroke="rgba(30,45,38,0.1)" stroke-width="12" stroke-linecap="round"></path>
+            <path class="dial-track" d="M 15 105 A 80 80 0 0 1 175 105" fill="none" stroke-width="12" stroke-linecap="round"></path>
             <path id="dialArc" d="M 15 105 A 80 80 0 0 1 175 105" fill="none" stroke="var(--primary)" stroke-width="12" stroke-linecap="round"></path>
           </svg>
           <div class="dial-num"><span id="scoreNum">0</span><small> / 100</small></div>

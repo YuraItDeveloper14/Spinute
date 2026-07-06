@@ -27,6 +27,20 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// ── Theme (dark keeps the same gradients, only the base darkens) ────────────
+const THEME_KEY = "1minconvo-theme";
+function applyTheme(t) { document.documentElement.setAttribute("data-theme", t); }
+(function initTheme() {
+  let t = localStorage.getItem(THEME_KEY);
+  if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  applyTheme(t);
+})();
+$("themeToggle").onclick = () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+};
+
 // ── State ─────────────────────────────────────────────────────────────────
 const state = {
   lang: LANGS[0],
@@ -185,7 +199,7 @@ function renderHome() {
     b.className = "chip";
     b.type = "button";
     b.setAttribute("aria-pressed", String(l.key === state.lang.key));
-    b.innerHTML = `<span class="chip-code">${l.short}</span>${l.name}`;
+    b.innerHTML = `<span class="chip-code">${l.short}</span>${l.name}<span class="chip-hi">${l.hi}</span>`;
     b.onclick = () => { state.lang = l; renderHome(); };
     if (gsapReady() && hoverFine) {
       const code = b.querySelector(".chip-code");

@@ -1,20 +1,20 @@
 // ── Data: languages, topics, hints, fillers, connectors ────────────────────
 
 const LANGS = [
-  { code: "en-US", key: "en", name: "English",    short: "EN" },
-  { code: "de-DE", key: "de", name: "Deutsch",    short: "DE" },
-  { code: "es-ES", key: "es", name: "Español",    short: "ES" },
-  { code: "fr-FR", key: "fr", name: "Français",   short: "FR" },
-  { code: "it-IT", key: "it", name: "Italiano",   short: "IT" },
-  { code: "pt-BR", key: "pt", name: "Português",  short: "PT" },
-  { code: "pl-PL", key: "pl", name: "Polski",     short: "PL" },
-  { code: "uk-UA", key: "uk", name: "Українська", short: "UA" },
+  { code: "en-US", key: "en", name: "English",    short: "EN", hi: "Hello" },
+  { code: "de-DE", key: "de", name: "Deutsch",    short: "DE", hi: "Hallo" },
+  { code: "es-ES", key: "es", name: "Español",    short: "ES", hi: "Hola" },
+  { code: "fr-FR", key: "fr", name: "Français",   short: "FR", hi: "Bonjour" },
+  { code: "it-IT", key: "it", name: "Italiano",   short: "IT", hi: "Ciao" },
+  { code: "pt-BR", key: "pt", name: "Português",  short: "PT", hi: "Olá" },
+  { code: "pl-PL", key: "pl", name: "Polski",     short: "PL", hi: "Cześć" },
+  { code: "uk-UA", key: "uk", name: "Українська", short: "UA", hi: "Привіт" },
 ];
 
 const DIFFS = [
-  { id: "easy",   label: "Easy",   cefr: "A1–A2", desc: "Everyday topics: family, food, hobbies" },
-  { id: "medium", label: "Medium", cefr: "B1–B2", desc: "Experience and opinions: travel, work, plans" },
-  { id: "hard",   label: "Hard",   cefr: "C1–C2", desc: "Discussion: society, technology, ethics" },
+  { id: "easy",   label: "Beginner",     cefr: "A1–A2", desc: "Everyday topics: family, food, hobbies" },
+  { id: "medium", label: "Intermediate", cefr: "B1–B2", desc: "Experience and opinions: travel, work, plans" },
+  { id: "hard",   label: "Advanced",     cefr: "C1–C2", desc: "Discussion: society, technology, ethics" },
 ];
 
 // Each topic: title (t) and 3 hint phrases (h) per language.

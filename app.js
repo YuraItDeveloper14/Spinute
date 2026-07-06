@@ -29,16 +29,25 @@ function escapeHtml(s) {
 
 // ── Theme (dark keeps the same gradients, only the base darkens) ────────────
 const THEME_KEY = "1minconvo-theme";
-function applyTheme(t) { document.documentElement.setAttribute("data-theme", t); }
+let themeAnimTimer = null;
+function applyTheme(t, animate) {
+  const root = document.documentElement;
+  if (animate && !reducedMotion) {
+    root.classList.add("theming");
+    clearTimeout(themeAnimTimer);
+    themeAnimTimer = setTimeout(() => root.classList.remove("theming"), 650);
+  }
+  root.setAttribute("data-theme", t);
+}
 (function initTheme() {
   let t = localStorage.getItem(THEME_KEY);
   if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  applyTheme(t);
+  applyTheme(t, false);
 })();
 $("themeToggle").onclick = () => {
   const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
   localStorage.setItem(THEME_KEY, next);
-  applyTheme(next);
+  applyTheme(next, true);
 };
 
 // ── State ─────────────────────────────────────────────────────────────────
@@ -199,7 +208,7 @@ function renderHome() {
     b.className = "chip";
     b.type = "button";
     b.setAttribute("aria-pressed", String(l.key === state.lang.key));
-    b.innerHTML = `<span class="chip-code">${l.short}</span>${l.name}<span class="chip-hi">${l.hi}</span>`;
+    b.innerHTML = `<span class="chip-code">${l.short}</span><span class="chip-label"><span class="chip-name">${l.name}</span><span class="chip-hi">${l.hi}</span></span>`;
     b.onclick = () => { state.lang = l; renderHome(); };
     if (gsapReady() && hoverFine) {
       const code = b.querySelector(".chip-code");
@@ -976,7 +985,7 @@ function renderHistory() {
 
 function exportProgress() {
   const data = {
-    app: "Riff",
+    app: "Spinute",
     exportedAt: new Date().toISOString(),
     streak: store.streak,
     weeklyGoal: store.weeklyGoal,
@@ -987,7 +996,7 @@ function exportProgress() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "riff-progress.json";
+  a.download = "spinute-progress.json";
   document.body.appendChild(a);
   a.click();
   a.remove();

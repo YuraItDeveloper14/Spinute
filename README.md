@@ -1,4 +1,4 @@
-# Riff — one-minute speaking practice
+# Spinute — one-minute speaking practice
 
 Draw a random topic, get 30 seconds to prepare and one minute to speak in the
 language you're learning, then get an honest breakdown of how you spoke — pace,
@@ -45,7 +45,7 @@ That's it — Vercel serves `index.html` directly.
 ### Push to GitHub
 
 ```bash
-git remote add origin https://github.com/<your-username>/riff.git
+git remote add origin https://github.com/<your-username>/spinute.git
 git branch -M main
 git push -u origin main
 ```

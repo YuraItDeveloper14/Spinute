@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riff — one-minute speaking practice</title>
+  <title>Spinute — one-minute speaking practice</title>
   <meta name="description" content="Get a random topic and speak for one minute in the language you're learning. Speech analysis and an approximate CEFR level, right in your browser." />
   <meta name="theme-color" content="#f3f6f2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='16' y='24' font-size='24' font-family='Georgia,serif' font-style='italic' text-anchor='middle' fill='%23276149'>R</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 26'><path d='M12 2.4C17.4 5.2 19.6 11.2 12 22.4C4.4 11.2 6.6 5.2 12 2.4Z' fill='%23276149'/></svg>" />
 </head>
 <body>
   <div class="backdrop" aria-hidden="true"></div>
@@ -20,19 +20,19 @@
 
   <div class="app">
     <nav class="topbar">
-      <button class="wordmark" id="navHome">Riff<span class="dot">.</span></button>
+      <button class="wordmark" id="navHome">Spinute<span class="dot">.</span></button>
       <div class="topbar-right">
         <span class="streak-pill" id="streakPill" title="Days practised in a row">
-          <span class="flame" aria-hidden="true">
-            <svg viewBox="0 0 24 26" width="17" height="19">
-              <path class="flame-body" d="M12 2.2c2.7 3.9 6 6.3 6 11.6a6 6 0 0 1-12 0c0-2.5 1-4 2.3-5.4-.1 1.4.5 2.6 1.6 3.2-.9-3.4-.4-6.6 2.1-9.4z"/>
-              <circle class="eye" cx="9.8" cy="14.6" r="1.4"/>
-              <circle class="eye" cx="14.2" cy="14.6" r="1.4"/>
-              <circle class="pupil" cx="10" cy="14.9" r="0.62"/>
-              <circle class="pupil" cx="14.4" cy="14.9" r="0.62"/>
-              <path class="mouth mouth-sad" d="M10 18.6 Q12 16.9 14 18.6"/>
-              <path class="mouth mouth-happy" d="M9.8 17.7 Q12 20.3 14.2 17.7"/>
-              <circle class="tear" cx="9.2" cy="16.2" r="0.9"/>
+          <span class="leaf" aria-hidden="true">
+            <svg viewBox="0 0 24 26" width="18" height="20">
+              <path class="leaf-body" d="M12 2.4C17.4 5.2 19.6 11.2 12 22.4C4.4 11.2 6.6 5.2 12 2.4Z"/>
+              <path class="leaf-vein" d="M12 4.6 V 11 M12 7 L 14.4 5.6 M12 9 L 9.6 7.6"/>
+              <circle class="eye" cx="10" cy="12.7" r="1.35"/>
+              <circle class="eye" cx="14" cy="12.7" r="1.35"/>
+              <circle class="pupil" cx="10.2" cy="13" r="0.6"/>
+              <circle class="pupil" cx="14.2" cy="13" r="0.6"/>
+              <path class="mouth mouth-happy" d="M10 15.3 Q12 17.5 14 15.3"/>
+              <path class="mouth mouth-sad" d="M10 16.4 Q12 14.7 14 16.4"/>
             </svg>
           </span>
           <b id="streakNum">0</b><span class="streak-word" id="streakWord">days</span>

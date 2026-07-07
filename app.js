@@ -163,6 +163,16 @@ function renderStreak() {
     : "You haven't spoken today yet — keep the streak alive";
 }
 
+// The spinach leaf springs to life when a talk is finished
+function growLeaf() {
+  if (reducedMotion) return;
+  const pill = $("streakPill");
+  pill.classList.remove("just-grew");
+  void pill.offsetWidth; // restart the animation
+  pill.classList.add("just-grew");
+  setTimeout(() => pill.classList.remove("just-grew"), 950);
+}
+
 // ── Weekly goal ─────────────────────────────────────────────────────────────
 const WEEK_LEN = 2 * Math.PI * 18;
 function weekStart() {
@@ -877,6 +887,7 @@ function showResults() {
   const newBadges = checkBadges(a);
   saveStore();
   renderStreak();
+  growLeaf();
   renderWeek();
   if (newBadges.length) showBadgeToast(newBadges[0]);
 }

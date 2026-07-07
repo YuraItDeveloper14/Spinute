@@ -132,12 +132,29 @@ html[data-theme="dark"] .grain { opacity: 0.06; }
   border-bottom: 0;
   box-shadow: 0 14px 26px -22px var(--topbar-fade);
 }
+.brand { position: relative; display: inline-flex; }
 .wordmark {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   font-size: var(--fs-l); cursor: pointer;
   background: none; border: none; color: var(--ink); padding: 0;
 }
 .wordmark .dot { color: var(--primary); font-style: normal; }
+.wordmark .w-a, .wordmark .w-b { transition: color 0.3s ease; }
+.brand:hover .w-a, .brand:focus-within .w-a { color: var(--greet); }
+.brand:hover .w-b, .brand:focus-within .w-b { color: var(--primary); }
+
+/* hovering the wordmark decodes the name onto a little spinach leaf */
+.brand-tip {
+  position: absolute; left: 0; top: 100%; margin-top: 3px;
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  font-family: var(--font-display); font-style: italic; font-size: 0.82rem;
+  color: var(--greet);
+  opacity: 0; transform: translateY(-5px); pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.brand-tip b { font-weight: 700; font-style: normal; }
+.brand-tip .bt-x { opacity: 0.5; font-style: normal; margin: 0 1px; }
+.brand:hover .brand-tip, .brand:focus-within .brand-tip { opacity: 1; transform: translateY(0); }
 .topbar-right { display: flex; align-items: center; gap: 10px; }
 
 .icon-btn {
@@ -179,6 +196,15 @@ html[data-theme="dark"] .icon-btn .ic-moon { display: inline; }
 .streak-pill.done .pupil { transform: translateY(-0.4px); }
 .streak-pill.done .leaf svg { animation: leaf-sway 4s ease-in-out infinite; }
 .streak-pill.done:hover .leaf svg { animation: leaf-hop 0.5s cubic-bezier(0.3, 0.9, 0.4, 1); }
+
+/* the leaf springs to life when a talk is finished (wilted → fresh) */
+.streak-pill.done.just-grew .leaf svg { animation: leaf-grow 0.9s cubic-bezier(0.2, 0.9, 0.3, 1); }
+@keyframes leaf-grow {
+  0%   { transform: rotate(10deg) scale(0.82); }
+  45%  { transform: rotate(-5deg) scale(1.14); }
+  72%  { transform: rotate(3deg) scale(0.97); }
+  100% { transform: rotate(0) scale(1); }
+}
 
 /* Wilted spinach (not practised today): olive, drooping, frowning */
 .streak-pill.sad .leaf-body { fill: var(--wilt); }
@@ -618,8 +644,8 @@ html[data-theme="dark"] .icon-btn .ic-moon { display: inline; }
   .reel-strip.spinning { filter: none; }
   .reel-window.landed { animation: none; }
   .ai-loading::after { animation: none; }
-  .streak-pill .flame svg { animation: none; }
-  .streak-pill.sad:hover .tear { animation: none; }
-  .streak-pill.done:hover .flame svg { animation: none; }
+  .streak-pill.done .leaf svg { animation: none; }
+  .streak-pill.done:hover .leaf svg { animation: none; }
+  .streak-pill.done.just-grew .leaf svg { animation: none; }
   #screen-result.active > * { animation: none; }
 }

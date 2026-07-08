@@ -24,18 +24,26 @@ function initMotion() {
 }
 
 // Soft floating specks drifting up the page — subtle life, calm
+const PARTICLE_LEAF = "M12 2C18 6 20 12 12 22C4 12 6 6 12 2Z";
 function initParticles() {
   if (reducedMotion || typeof window.gsap === "undefined") return;
   const layer = $("particles");
+  const svgNS = "http://www.w3.org/2000/svg";
   for (let i = 0; i < 16; i++) {
-    const p = document.createElement("span");
-    p.className = "particle";
-    const size = 3 + Math.random() * 6;
+    const p = document.createElementNS(svgNS, "svg");
+    p.setAttribute("class", "particle");
+    p.setAttribute("viewBox", "0 0 24 24");
+    const path = document.createElementNS(svgNS, "path");
+    path.setAttribute("d", PARTICLE_LEAF);
+    p.appendChild(path);
+    const size = 6 + Math.random() * 10;
     p.style.width = p.style.height = size + "px";
     p.style.left = Math.random() * 100 + "vw";
+    const startRotate = Math.random() * 360;
+    p.style.transform = `rotate(${startRotate}deg)`;
     layer.appendChild(p);
     const dur = 16 + Math.random() * 12;
-    gsap.set(p, { y: "102vh" });
+    gsap.set(p, { y: "102vh", rotate: startRotate });
     gsap.to(p, {
       y: "-14vh", x: "+=" + (Math.random() * 2 - 1) * 44, duration: dur, ease: "none",
       repeat: -1, delay: -Math.random() * dur,
@@ -43,6 +51,10 @@ function initParticles() {
     });
     gsap.to(p, {
       opacity: 0.1 + Math.random() * 0.16, duration: dur * 0.45,
+      repeat: -1, yoyo: true, ease: "sine.inOut", delay: -Math.random() * dur,
+    });
+    gsap.to(p, {
+      rotate: startRotate + (Math.random() < 0.5 ? -50 : 50), duration: dur * 0.6,
       repeat: -1, yoyo: true, ease: "sine.inOut", delay: -Math.random() * dur,
     });
   }

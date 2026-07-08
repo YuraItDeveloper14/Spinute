@@ -113,7 +113,7 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.01em; }
 html[data-theme="dark"] .amb { opacity: 0.28; }
 
 .particles { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.particle { position: absolute; border-radius: 50%; background: var(--primary); opacity: 0; }
+.particle { position: absolute; display: block; overflow: visible; opacity: 0; fill: var(--primary); }
 
 .grain {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.045;
@@ -159,15 +159,15 @@ html[data-theme="dark"] .grain { opacity: 0.06; }
 .bt-leaf-vein { fill: none; stroke: oklch(0.45 0.1 152 / 0.3); stroke-width: 1.2; stroke-linecap: round; }
 .bt-rows {
   position: relative; z-index: 1; height: 100%;
-  display: flex; flex-direction: column; justify-content: center; gap: 3px;
-  padding-left: 24px;
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  padding: 0 15px 0 22px; overflow: hidden;
 }
 .bt-row {
   font-family: var(--font-display); font-style: italic; font-weight: 600;
-  font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-size: 0.78rem; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
 }
-.bt-row b { font-style: normal; font-weight: 800; min-width: 1.9ch; }
-.bt-arw { font-style: normal; opacity: 0.65; }
+.bt-row b { font-style: normal; font-weight: 800; min-width: 1.7ch; }
+.bt-arw { font-style: normal; opacity: 0.65; font-size: 0.9em; }
 .bt-speak { color: var(--greet); }     /* blue-teal, like the wordmark's Sp */
 .bt-minute { color: var(--tint-ink); } /* green, like the wordmark's ute */
 .topbar-right { display: flex; align-items: center; gap: 10px; }

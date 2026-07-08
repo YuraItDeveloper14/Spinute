@@ -6,6 +6,18 @@
   <title>Spinute — one-minute speaking practice</title>
   <meta name="description" content="Get a random topic and speak for one minute in the language you're learning. Speech analysis and an approximate CEFR level, right in your browser." />
   <meta name="theme-color" content="#f3f6f2" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Spinute" />
+  <meta property="og:title" content="Spinute — one-minute speaking practice" />
+  <meta property="og:description" content="Draw a random topic and speak for one minute in the language you're learning. Instant speech analysis and an approximate CEFR level, right in your browser." />
+  <meta property="og:url" content="https://spinute.vercel.app/" />
+  <meta property="og:image" content="https://spinute.vercel.app/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Spinute — one-minute speaking practice" />
+  <meta name="twitter:description" content="Draw a random topic and speak for one minute in the language you're learning. Instant speech analysis and an approximate CEFR level." />
+  <meta name="twitter:image" content="https://spinute.vercel.app/og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
@@ -17,14 +29,21 @@
   <div class="amb amb-1" aria-hidden="true"></div>
   <div class="amb amb-2" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
 
   <div class="app">
     <nav class="topbar">
       <span class="brand">
         <button class="wordmark" id="navHome"><span class="w-a">Sp</span>in<span class="w-b">ute</span><span class="dot">.</span></button>
         <span class="brand-tip" aria-hidden="true">
-          <svg viewBox="0 0 24 26" width="12" height="13" aria-hidden="true"><path d="M12 2.4C17.4 5.2 19.6 11.2 12 22.4C4.4 11.2 6.6 5.2 12 2.4Z" fill="currentColor"/></svg>
-          <b>speak</b><span class="bt-x">+</span><b>minute</b>
+          <svg class="bt-leaf" viewBox="0 0 132 66" preserveAspectRatio="none" aria-hidden="true">
+            <path class="bt-leaf-fill" d="M5 33C22 8 66 4 128 11C112 36 104 60 42 62C19 62 7 49 5 33Z"/>
+            <path class="bt-leaf-vein" d="M13 35C48 30 90 23 122 13"/>
+          </svg>
+          <span class="bt-rows">
+            <span class="bt-row bt-speak"><b>Sp</b><span class="bt-arw">→</span>speak</span>
+            <span class="bt-row bt-minute"><b>ute</b><span class="bt-arw">→</span>minute</span>
+          </span>
         </span>
       </span>
       <div class="topbar-right">

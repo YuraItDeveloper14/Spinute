@@ -23,6 +23,31 @@ function initMotion() {
     { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.06, ease: "power3.out" });
 }
 
+// Soft floating specks drifting up the page — subtle life, calm
+function initParticles() {
+  if (reducedMotion || typeof window.gsap === "undefined") return;
+  const layer = $("particles");
+  for (let i = 0; i < 16; i++) {
+    const p = document.createElement("span");
+    p.className = "particle";
+    const size = 3 + Math.random() * 6;
+    p.style.width = p.style.height = size + "px";
+    p.style.left = Math.random() * 100 + "vw";
+    layer.appendChild(p);
+    const dur = 16 + Math.random() * 12;
+    gsap.set(p, { y: "102vh" });
+    gsap.to(p, {
+      y: "-14vh", x: "+=" + (Math.random() * 2 - 1) * 44, duration: dur, ease: "none",
+      repeat: -1, delay: -Math.random() * dur,
+      onRepeat: () => { p.style.left = Math.random() * 100 + "vw"; },
+    });
+    gsap.to(p, {
+      opacity: 0.1 + Math.random() * 0.16, duration: dur * 0.45,
+      repeat: -1, yoyo: true, ease: "sine.inOut", delay: -Math.random() * dur,
+    });
+  }
+}
+
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -1033,6 +1058,7 @@ $("btnExport").onclick = exportProgress;
 // ── Start ─────────────────────────────────────────────────────────────────────
 renderHome();
 initMotion();
+initParticles();
 // quick hash navigation: /#play opens the reel, /#history opens progress
 if (location.hash === "#play" || location.hash === "#deck") { buildReel(); show("reel"); }
 else if (location.hash === "#history") { renderHistory(); show("history"); }

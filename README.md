@@ -3,6 +3,11 @@
 <!-- badges -->
 [![CI](https://github.com/YuraItDeveloper14/Spinute/actions/workflows/check.yml/badge.svg)](https://github.com/YuraItDeveloper14/Spinute/actions/workflows/check.yml) [![License](https://img.shields.io/github/license/YuraItDeveloper14/Spinute?color=blue)](LICENSE) [![Last commit](https://img.shields.io/github/last-commit/YuraItDeveloper14/Spinute)](https://github.com/YuraItDeveloper14/Spinute/commits)
 
+<!-- preview -->
+<p align="center">
+  <img src="docs/preview.jpg" alt="Spinute — live site" width="900">
+</p>
+
 Draw a random topic, get 30 seconds to prepare and one minute to speak in the
 language you're learning, then get an honest breakdown of how you spoke — pace,
 vocabulary, coherence, fluency, filler words — plus an approximate CEFR level.

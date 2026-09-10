@@ -66,3 +66,9 @@ git push -u origin main
   `claude-opus-4-8` reviewing your transcript. API usage is billed to your
   Anthropic **API credits** (pay-as-you-go), which are separate from any
   Claude Pro/Max subscription. A typical review costs a few cents.
+
+## Tests
+
+The speech analysis lives in `analysis.js` — pure functions, no DOM — and is covered by
+`node --test` (nothing to install). The page loads the same file, so the scores on
+screen are the ones under test.

@@ -19,13 +19,24 @@
 
   function countPhrases(text, phrases) {
     const norm = " " + text.toLowerCase().replace(/[.,!?;:()"«»„"]/g, " ").replace(/\s+/g, " ") + " ";
+    // Longest phrases first, and every match is blanked out, so "тому що" is not
+    // counted a second time as "тому". The result keeps the order of the list.
+    let rest = norm;
+    const counts = {};
+    phrases.slice().sort((x, y) => y.length - x.length).forEach((p) => {
+      let idx = 0, c = 0;
+      const needle = " " + p + " ";
+      while ((idx = rest.indexOf(needle, idx)) !== -1) {
+        c++;
+        rest = rest.slice(0, idx + 1) + "\u0000".repeat(p.length) + rest.slice(idx + needle.length - 1);
+        idx += needle.length - 1;
+      }
+      counts[p] = c;
+    });
     const found = {};
     let total = 0;
     phrases.forEach((p) => {
-      let idx = 0, c = 0;
-      const needle = " " + p + " ";
-      while ((idx = norm.indexOf(needle, idx)) !== -1) { c++; idx += needle.length - 1; }
-      if (c > 0) { found[p] = c; total += c; }
+      if (counts[p] > 0) { found[p] = counts[p]; total += counts[p]; }
     });
     return { total, found };
   }
